@@ -8,5 +8,16 @@ class ProductPage(BasePage):
         add_to_basket_button = self.browser.find_element(*ProductPageLocators.ADD_BASKET_BUTTON)
         add_to_basket_button.click()
 
+    def should_be_add_button(self):
+        assert self.is_element_present(*ProductPageLocators.ADD_BASKET_BUTTON), "Add Basket Button is not presented"
 
+    def should_be_correct_name(self):
+        assert self.browser.find_element(*ProductPageLocators.NAME_PRODUCT_IN_DESCRIPTION).text == \
+               self.browser.find_element(*ProductPageLocators.NAME_PRODUCT_IN_MESSAGE).text, \
+            "Basket name message does not match the item name"
+
+    def should_be_correct_price(self):
+        assert self.browser.find_element(*ProductPageLocators.PRICE_PRODUCT_IN_DESCRIPTION).text == \
+              self.browser.find_element(*ProductPageLocators.PRICE_PRODUCT_IN_MESSAGE).text, \
+            "Basket price message does not match the item price"
 
