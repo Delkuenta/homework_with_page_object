@@ -24,3 +24,13 @@ class LoginPage(BasePage):
             "Warning: element Registration Password(first) not found"
         assert self.is_element_present(*LoginPageLocators.REGISTRATION_PASSWORD2), \
             "Warning: element Registration Password(second) not found"
+
+    def register_new_user(self, email, password):
+        registration_email = self.browser.find_element(*LoginPageLocators.REGISTRATION_EMAIL)
+        registration_email.send_keys(email)
+        password_input1 = self.browser.find_element(*LoginPageLocators.REGISTRATION_PASSWORD1)
+        password_input1.send_keys(password)
+        password_input2 = self.browser.find_element(*LoginPageLocators.REGISTRATION_PASSWORD2)
+        password_input2.send_keys(password)
+        registration_button = self.browser.find_element(*LoginPageLocators.REGISTRATION_SUBMIT)
+        registration_button.click()
